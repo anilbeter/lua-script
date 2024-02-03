@@ -1,16 +1,13 @@
-myNumber = 23
-condition = -55
+message = 0
+test = 0
 
-if condition > 0 then
-  myNumber = 0
-elseif condition < -50 then
-  myNumber = 73
-else
-  myNumber = 100
+while message < 100 do
+    message = message + 1
+    test = test - 5
 end
 
 function love.draw()
-  -- set font size to 50
-  love.graphics.setFont(love.graphics.newFont(50))
-  love.graphics.print(myNumber) -- 73
+    -- set font size to 50
+    love.graphics.setFont(love.graphics.newFont(50))
+    love.graphics.print(test) -- -500
 end
