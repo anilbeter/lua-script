@@ -1,10 +1,13 @@
-message = "Imma go on my way!"
 myNumber = 23
-chickenNum = 5
-output = chickenNum + 18 -- 23
+condition = 25
 
-myNumber = myNumber + 1 -- 24
+if condition > 0 then
+  myNumber = 0
+end
 
+if condition <= 0 then
+  myNumber = -1
+end
 
 function love.draw()
   -- set font size to 50
