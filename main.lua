@@ -1,6 +1,8 @@
 message = 0
 
 testScores = {23, 99, 105}
+-- assigning value with .
+testScores.subject = "science"
 
 -- tables with for loop
 
@@ -15,5 +17,5 @@ end
 function love.draw()
     -- set font size to 50
     love.graphics.setFont(love.graphics.newFont(50))
-    love.graphics.print(message) -- 227
+    love.graphics.print(testScores.subject) -- science
 end
