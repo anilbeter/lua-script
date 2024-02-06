@@ -7,5 +7,8 @@ function love.update(dt)
 end
 
 function love.draw()
-    love.graphics.print(number)
+    -- mode, x, y, width, height
+    love.graphics.rectangle("fill", 200, 400, 200, 100)
+    -- mode, x, y, radius
+    love.graphics.circle("fill", 100, 100, 100)
 end
