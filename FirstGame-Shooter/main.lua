@@ -9,6 +9,16 @@ function love.load()
 
     -- new font size
     gameFont = love.graphics.newFont(40)
+
+    sprites = {}
+    sprites.sky = love.graphics.newImage("Sprites/sky.png")
+    sprites.target = love.graphics.newImage("Sprites/target.png")
+    sprites.crosshair = love.graphics.newImage("Sprites/crosshairs.png")
+
+    crosshairWidth = sprites.crosshair:getWidth()
+    crosshairHeight = sprites.crosshair:getHeight()
+
+    love.mouse.setVisible(false)
 end
 
 function love.update(dt)
@@ -22,8 +32,7 @@ function love.update(dt)
 end
 
 function love.draw()
-    love.graphics.setColor(1, 0, 0)
-    love.graphics.circle("fill", target.x, target.y, target.radius)
+    love.graphics.draw(sprites.sky, 0, 0)
 
     love.graphics.setColor(1, 1, 1)
     love.graphics.setFont(gameFont)
@@ -31,6 +40,9 @@ function love.draw()
 
     -- ceil = rounding up to the next higher integer, floor = rounding down
     love.graphics.print(math.ceil(timer), 300, 0)
+
+    love.graphics.draw(sprites.target, target.x - target.radius, target.y- target.radius)
+    love.graphics.draw(sprites.crosshair, love.mouse.getX() - crosshairWidth/2 , love.mouse.getY() - crosshairHeight/2)
 end
 
 function love.mousepressed(x, y, button, istouch, presses)
