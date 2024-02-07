@@ -10,7 +10,7 @@ function love.load()
     gameState = 1
 
     -- new font size
-    gameFont = love.graphics.newFont(40)
+    gameFont = love.graphics.newFont(30)
 
     sprites = {}
     sprites.sky = love.graphics.newImage("Sprites/sky.png")
@@ -43,13 +43,17 @@ function love.draw()
 
     love.graphics.setColor(1, 1, 1)
     love.graphics.setFont(gameFont)
-    love.graphics.print(score, 0, 0)
+    love.graphics.print("Score: " .. score, 5, 5)
     love.graphics.setFont(love.graphics.newFont(30))
-    love.graphics.print("Highest score: " .. highestScore, 0, 50)
+    love.graphics.print("Highest score: " .. highestScore, 5, 35)
 
     -- ceil = rounding up to the next higher integer, floor = rounding down
-      love.graphics.setFont(love.graphics.newFont(40))
-    love.graphics.print(math.ceil(timer), love.graphics.getWidth() - 55, 0)
+      love.graphics.setFont(love.graphics.newFont(30))
+    love.graphics.print("Time: " .. math.ceil(timer), love.graphics.getWidth() - 132, 5)
+
+    if gameState == 1 then
+        love.graphics.printf("Click anywhere to begin!", 0, 250, love.graphics.getWidth(), "center")
+    end
 
     if gameState == 2 then
         love.graphics.draw(sprites.target, target.x - target.radius, target.y- target.radius)
