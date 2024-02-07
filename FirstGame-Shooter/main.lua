@@ -5,7 +5,9 @@ function love.load()
     target.radius = 50
 
     score = 0
-    timer = 10
+    highestScore = 0
+    timer = 0
+    gameState = 1
 
     -- new font size
     gameFont = love.graphics.newFont(40)
@@ -28,6 +30,11 @@ function love.update(dt)
 
         if timer < 0 then
         timer = 0
+        if score > highestScore then
+           highestScore = score
+        end
+        score = 0
+        gameState = 1
     end
 end
 
@@ -37,23 +44,32 @@ function love.draw()
     love.graphics.setColor(1, 1, 1)
     love.graphics.setFont(gameFont)
     love.graphics.print(score, 0, 0)
+    love.graphics.setFont(love.graphics.newFont(30))
+    love.graphics.print("Highest score: " .. highestScore, 0, 50)
 
     -- ceil = rounding up to the next higher integer, floor = rounding down
-    love.graphics.print(math.ceil(timer), 300, 0)
+      love.graphics.setFont(love.graphics.newFont(40))
+    love.graphics.print(math.ceil(timer), love.graphics.getWidth() - 55, 0)
 
-    love.graphics.draw(sprites.target, target.x - target.radius, target.y- target.radius)
+    if gameState == 2 then
+        love.graphics.draw(sprites.target, target.x - target.radius, target.y- target.radius)
+    end    
     love.graphics.draw(sprites.crosshair, love.mouse.getX() - crosshairWidth/2 , love.mouse.getY() - crosshairHeight/2)
 end
 
 function love.mousepressed(x, y, button, istouch, presses)
     -- button == 1 -> left click, 2 -> right click
-    if button == 1 then
+    if button == 1 and gameState == 2 then
         local mouseToTarget = distanceBetween(x, y, target.x, target.y)
         if mouseToTarget < target.radius then
             score = score + 1
             target.x = math.random(target.radius, love.graphics.getWidth() - target.radius)
             target.y = math.random(target.radius, love.graphics.getHeight() - target.radius)
         end
+    -- gameState = 1 -> ana menüdeyim, herhangi bir yere sol tıklarsam gameState = 2 olucak, yani oyun başlayacak
+    elseif button == 1 and gameState == 1 then
+        gameState = 2
+        timer = 10
     end
 end
 
