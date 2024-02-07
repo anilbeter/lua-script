@@ -69,6 +69,10 @@ function love.mousepressed(x, y, button, istouch, presses)
             score = score + 1
             target.x = math.random(target.radius, love.graphics.getWidth() - target.radius)
             target.y = math.random(target.radius, love.graphics.getHeight() - target.radius)
+        elseif mouseToTarget > target.radius then
+            if score > 0 then
+                score = score - 1
+            end 
         end
     -- gameState = 1 -> ana menüdeyim, herhangi bir yere sol tıklarsam gameState = 2 olucak, yani oyun başlayacak
     elseif button == 1 and gameState == 1 then
