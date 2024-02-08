@@ -38,7 +38,7 @@ function love.draw()
   -- player offset origini tam merkeze aldım, artık player kendi etrafında dönüyor
 
   for i,z in ipairs(zombies) do
-    love.graphics.draw(sprites.zombie, z.x, z.y)
+    love.graphics.draw(sprites.zombie, z.x, z.y, zombiePlayerAngle(z), nil, nil, z.width/2, z.height/2)
   end
 end
 
@@ -62,4 +62,8 @@ function spawnZombie()
   zombie.speed = 100
   
   table.insert(zombies, zombie)
+end
+
+function zombiePlayerAngle(enemy)
+  return math.atan2(player.y - enemy.y, player.x - enemy.x)
 end
