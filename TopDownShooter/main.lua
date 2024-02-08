@@ -35,12 +35,14 @@ function love.update(dt)
     z.x = z.x + math.cos(zombiePlayerAngle(z)) * z.speed * dt
     z.y = z.y + math.sin(zombiePlayerAngle(z)) * z.speed * dt
 
+  -- now this code removes only one zombie (OnCollision with player) instead of remove all zombies
+  for i=#zombies, 1, -1 do
+    local z = zombies[i]
     if distanceBetween(z.x, z.y, player.x, player.y) < player.width then
-      for i,z in ipairs(zombies) do
-          zombies[i] = nil
-      end
+      table.remove(zombies, i)
     end
   end
+end
 
   for i,b in ipairs(bullets) do
     b.x = b.x + math.cos(b.direction) * b.speed * dt
