@@ -35,6 +35,11 @@ end
 
 function love.draw()
   love.graphics.draw(sprites.background, 0, 0)
-  love.graphics.draw(sprites.player, player.x, player.y, tempRotation, nil, nil, player.width/2, player.height/2)
+  love.graphics.draw(sprites.player, player.x, player.y, playerMouseAngle(), nil, nil, player.width/2, player.height/2)
   -- player offset origini tam merkeze aldım, artık player kendi etrafında dönüyor
+end
+
+function playerMouseAngle()
+  -- formula -> atan2(y1-y2, x1-x2)
+  return math.atan2(player.y - love.mouse.getY(), player.x - love.mouse.getX()) + math.pi
 end
