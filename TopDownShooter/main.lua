@@ -10,21 +10,22 @@ function love.load()
   player.height = sprites.player:getHeight()
   player.x = love.graphics.getWidth() / 2 - player.width/2
   player.y = love.graphics.getHeight() / 2 - player.height/2
-  player.speed = 2
+  player.speed = 180
+  -- in love.update, player.speed will be 3 (180 / 60 = player.speed * 1/60(dt))
 end
 
 function love.update(dt)
   if love.keyboard.isDown("a") then
-    player.x = player.x - player.speed
+    player.x = player.x - player.speed * dt
   end
   if love.keyboard.isDown("d") then
-    player.x = player.x + player.speed
+    player.x = player.x + player.speed * dt
   end
   if love.keyboard.isDown("w") then
-    player.y = player.y - player.speed
+    player.y = player.y - player.speed * dt
   end
   if love.keyboard.isDown("s") then
-    player.y = player.y + player.speed
+    player.y = player.y + player.speed * dt
   end
 end
 
