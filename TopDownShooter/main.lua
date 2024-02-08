@@ -58,7 +58,7 @@ function love.draw()
   end
 
   for i,b in ipairs(bullets) do
-    love.graphics.draw(sprites.bullet, b.x, b.y, b.direction, nil, nil, b.width/2, b.height/2)
+    love.graphics.draw(sprites.bullet, b.x, b.y, nil, 1/2, 1/2, b.width/2, b.height/2)
   end
 end
 
