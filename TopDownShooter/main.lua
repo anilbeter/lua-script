@@ -19,6 +19,7 @@ function love.load()
   bullets= {}
 
   gameState = 1
+  score = 0
   maxTime = 2
   timer = maxTime
 
@@ -73,6 +74,7 @@ end
       if distanceBetween(z.x, z.y, b.x, b.y) < z.width then
         z.dead = true
         b.dead = true
+        score = score + 1
       end
     end
   end
@@ -109,6 +111,7 @@ function love.draw()
     love.graphics.printf("Click anywhere to begin!", 0, 50, love.graphics.getWidth(), "center")
   end
 
+  love.graphics.printf("Score: " .. score, 0, love.graphics.getHeight()-100, love.graphics.getWidth(), "center")
 
   love.graphics.draw(sprites.player, player.x, player.y, playerMouseAngle(), nil, nil, player.width/2, player.height/2)
   -- player offset origini tam merkeze aldım, artık player kendi etrafında dönüyor
@@ -122,11 +125,11 @@ function love.draw()
   end
 end
 
-function love.keypressed(key)
-  if key == "space" then
-    spawnZombie()
-  end
-end
+-- function love.keypressed(key)
+--   if key == "space" then
+--     spawnZombie()
+--   end
+-- end
 
 function love.mousepressed(x, y, button, istouch, presses)
   if button == 1 and gameState == 2 then
@@ -135,6 +138,7 @@ function love.mousepressed(x, y, button, istouch, presses)
     gameState = 2
     maxTime = 2
     timer = maxTime
+    score = 0
   end
 end
 
