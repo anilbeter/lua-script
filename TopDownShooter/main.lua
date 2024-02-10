@@ -27,16 +27,16 @@ end
 
 function love.update(dt)
   if gameState == 2 then
-    if love.keyboard.isDown("a") then
+    if love.keyboard.isDown("a") and player.x > player.width/2 then
       player.x = player.x - player.speed * dt
     end
-    if love.keyboard.isDown("d") then
+    if love.keyboard.isDown("d") and player.x < love.graphics.getWidth()-player.width/2 then
       player.x = player.x + player.speed * dt
     end
-    if love.keyboard.isDown("w") then
+    if love.keyboard.isDown("w") and player.y > player.height/2 then
       player.y = player.y - player.speed * dt
     end
-    if love.keyboard.isDown("s") then
+    if love.keyboard.isDown("s") and player.y < love.graphics.getHeight()-player.height/2 then
       player.y = player.y + player.speed * dt
     end
   end
