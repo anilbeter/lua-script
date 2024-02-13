@@ -4,5 +4,5 @@
 ### To-Do List
 - [x] Lua programming fundamentals
 - [x] Game 1 - ShootingAdv
-- [ ] Game 2 - Top Down Shooter
+- [x] Game 2 - Top Down Shooter
 - [ ] Game 3 - Platformer
